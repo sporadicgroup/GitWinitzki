@@ -1,0 +1,142 @@
+% Author: David Pearson, University of Exeter.
+\def\version{180502a}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,11pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Preamble
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%
+\frenchspacing
+\numberwithin{equation}{section}
+%
+\def\vecu{\boldsymbol{u}}
+\def\vecv{\boldsymbol{v}}
+\def\vecw{\boldsymbol{w}}
+\def\vecU{\boldsymbol{U}}
+\def\vecV{\boldsymbol{V}}
+%
+\def\veczero{\boldsymbol{0}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{David Pearson}
+\title{Notes and Exercises from Sergei Winitzki's Book.}
+\date{VERSION: \version}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+This is about~\cite{Winitzki}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{``Linear Algebra Without Coordinates''}
+We are going to need the definition of a {\em field}.
+This is what Wikipedia says:
+\begin{quote}
+Formally, a field is a set together with two operations called {\em addition} 
+and {\em multiplication}. 
+An operation is a mapping that associates an element 
+of the set to {\em every} pair of its elements. 
+The result of the addition of $a$ 
+and $b$ is called the sum of $a$ and $b$ and denoted $a + b$. 
+Similarly, the 
+result of the multiplication of $a$ and $b$ is called the product of $a$ and 
+$b$, and denoted $ab$ or $a\cdot b$. 
+These operations are required to satisfy 
+the following properties, referred to as field axioms. 
+In the sequel, $a$, $b$ and $c$ 
+are arbitrary elements of $F$.
+\begin{itemize}
+    \item Associativity of addition and multiplication: 
+        $a + (b + c) = (a + b) + c$ and 
+        $a \cdot (b \cdot c) = (a \cdot b) \cdot c$.
+    \item Commutativity of addition and multiplication: 
+        $a + b = b + a$ and 
+        $a \cdot b = b \cdot a$.
+    \item Additive and multiplicative identity: there exist two different 
+        elements $0$ and $1$ in $F$ such that $a + 0 = a$ and $a \cdot 1 = a$.
+    \item Additive inverses: for every $a$ in $F$, there exists an element in 
+        $F$, denoted $-a$, called additive inverse of $a$, such that
+        $a + (-a) = 0$.
+    \item Multiplicative inverses: for every $a \neq 0$ in $F$, there exists an 
+        element in $F$, denoted by $a^{-1}$, $1/a$, or $\frac{1}{a}$, called 
+        multiplicative inverse of a such that $a \cdot a^{-1} = 1$.
+    \item Distributivity of multiplication over addition: 
+        $a \cdot (b + c) = (a \cdot b) + (a \cdot c)$.
+\end{itemize}
+\end{quote}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\bf Page 14 (a) Q:} Is this a number field: 
+$\{ x+iy\sqrt{2} \, | \, x,y \in \mathbb{Q} \}$? \\
+{\bf A:} I am going to refer to objects like this as $(x,y)$.
+Then plainly the additive identity is $(0,0)$ and the multiplicative identity is
+$(1,0)$.
+\begin{itemize}
+    \item Closure under addition? 
+    $(a_1,a_2)+(b_1,b_2) =
+    (a_1+b_1, a_2+b_2)$
+    so yes, the set is closed under addition.
+    \item Closure under multiplication?
+    $(a_1,a_2)\cdot(b_1,b_2) = (a_1+i a_2 \sqrt{2})(b_1+i b_2 \sqrt(2))
+    =
+    (a_1 b_1 - 2 a_2 b_2 + i \sqrt{2} [a_1 b_2 + a_2 b_1])
+    =
+    (c_1, c_2)$
+    with $c_1 = a_1 b_1 - 2 a_2 b_2$ and $c_2 = a_1 b_2 + a_2 b_1$.
+    So yes, the set is closed under multiplication.
+    \item Commutativity of addition and multiplication? Obviously, yes.
+    \item Additive inverse? Yes, obviously $-(x,y) = (-x,-y)$.
+    \item Additive commutativity? Obviously yes,
+    \item Multiplicative commutatativity? I omit the calculation, but yes.
+    \item Multiplicative inverse?
+    $\frac{1}{x+i\sqrt{2}y} = \frac{x-i\sqrt{2}}{(x+i\sqrt{2}y)(x-i\sqrt{2})}
+    = \frac{x-i\sqrt{2}y}{x^2 + 2 y^2} = 
+    \left(\frac{x}{x^2 + 2y^2}, \frac{-y}{x^2 + 2 y^2}\right)$.
+    So yes.
+\end{itemize}
+All the requirements for the set to be a field are met, so the set {\em is}
+a field.
+
+{\bf Page 14 (b) Q:} Is this a number field: 
+$\{ x + y \sqrt{2} \, | \, x, y \in \mathbb{Z} \}$? \\
+{\bf A:} No, because $(0,1) = \sqrt{2}$ does not have a multiplicative inverse
+in which  both numbers are integers.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\bf Examples on Pages 16--17.}\\
+I am going to need the axioms of a vector space, as supplied 
+by~\cite{Macdonald}: a vector space $\vecV$ is a set of objects called 
+{\sl vectors}.
+There are two operations defined on $\vecV$: scalar multiplication $a \vecv$ and
+vector addition $\vecv + \vecw$.
+There is a zero vector $\veczero$.
+The following axioms must be satisfied for all vectors $\vecu$, $\vecv$ and
+$\vecw$, and all scalars $a$ and $b$.
+\begin{description}
+    \item[$V0$] $a \vecv \in \vecV$, $\vecv + \vecw \in \vecV$.
+    \item[$V1$] $\vecv + \vecw = \vecw + \vecv$.
+    \item[$V2$] $(\vecu + \vecv) + \vecw = \vecu + (\vecv + \vecw)$.
+    \item[$V3$] $\vecv + \veczero = \vecv$.
+    \item[$V4$] $0 \vecv = \veczero$.
+    \item[$V5$] $1 \vecv = \vecv$.
+    \item[$V6$] $a (b \vecv) = (a b) \vecv$.
+    \item[$V7$] $a (\vecv + \vecw) = a \vecv + a \vecw$.
+    \item[$V8$] $(a + b) \vecv = a \vecv + b \vecv$.
+\end{description}
+I will also need the test for a subspace, also found in~\cite{Macdonald}:
+Let $\vecU$ be a sut of vectors in a vector space $\vecV$,
+with $\veczero \in \vecU$. 
+Let $\vecU$ inherit scalar multiplication and vector addition from $\vecV$.
+Then
+\begin{gather}
+    \vecU \text{ is a subspace of } \vecV  \\
+    \iff \\
+    \vecU \text{ is closed under scalar multiplication and vector addition.}
+\end{gather}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{alpha}
+\bibliography{bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}  

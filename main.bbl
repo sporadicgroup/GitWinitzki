@@ -1,0 +1,15 @@
+\begin{thebibliography}{Win10}
+
+\bibitem[Mac10]{Macdonald}
+Alan Macdonald.
+\newblock {\em Linear and Geometric Algebra}.
+\newblock Createspace Independent Publishing Platform, 2010.
+\newblock {ISBN: 978-1-4538-5493-8}.
+
+\bibitem[Win10]{Winitzki}
+Sergei Winitzki.
+\newblock {\em Linear Algebra Via Exterior Products}.
+\newblock lulu.com, 2010.
+\newblock {ISBN: 978-1-4092-9496-2. Version: 1.2}.
+
+\end{thebibliography}
